@@ -1,0 +1,26 @@
+#!/bin/sh
+# -*- coding:utf-8 -*-
+
+###
+# File: timer
+# Project: smallscripts\stopwatch
+# Created: 2018-02-27 [Tue] 03:10:42 +0900
+# Author: H.Maruyama
+# -----
+# Last Modified: 2018-02-27 [Tue] 03:27:32 +0900
+# Modified By: H.Maruyama
+# -----
+# Copyright (C) 2018 H.Maruyama(WASSHA Inc.)
+# License: GNU General Public License v3.0 or later
+# License URL: http://www.gnu.org/licenses/gpl-3.0-standalone.html
+###
+
+seconds=$1;
+if [ -z ${seconds} ]; then
+    seconds=60
+fi
+
+date1=$((`date +%s` + $seconds)); 
+while [ "$date1" -ge `date +%s` ]; do 
+  echo -ne "$(date -u --date @$(($date1 - `date +%s` )) +%H:%M:%S)\r"; 
+done
